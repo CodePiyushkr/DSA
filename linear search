@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int ls(int a[], int n, int k) {
+    for (int i = 0; i < n; i++) {
+        if (a[i] == k)
+            return i;
+    }
+    return -1;
+}
+
+int main() {
+    int a[] = {12, 45, 67, 89, 34, 56};
+    int n = sizeof(a) / sizeof(a[0]);
+    int k;
+    printf("Enter element: ");
+    scanf("%d", &k);
+
+    int r = ls(a, n, k);
+    if (r != -1)
+        printf("Element found at index %d\n", r);
+    else
+        printf("Element not found\n");
+
+    return 0;
+}
