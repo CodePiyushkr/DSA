@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct N {
+    int d;
+    struct N *n;
+};
+
+void i(struct N **h, int v) {
+    struct N *nn = (struct N *)malloc(sizeof(struct N));
+    if (!nn) {
+        printf("Memory allocation failed\n");
+        return;
+    }
+    nn->d = v;
+    nn->n = *h;
+    *h = nn;
+}
+
+void d(struct N **h) {
+    if (!*h) {
+        printf("List is empty\n");
+        return;
+    }
+    struct N *t = *h;
+    *h = (*h)->n;
+    free(t);
+}
+
+void p(struct N *h) {
+    while (h) {
+        printf("%d -> ", h->d);
+        h = h->n;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    struct N *h = NULL;
+
+    i(&h, 10);
+    i(&h, 20);
+    i(&h, 30);
+
+    printf("List after insertion: ");
+    p(h);
+
+    d(&h);
+
+    printf("List after deletion: ");
+    p(h);
+
+    return 0;
+}
