@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+void insertElement(int a[], int *n, int k, int newValue) {
+    if (k < 0 || k > *n) {
+        printf("Invalid position\n");
+        return;
+    }
+    
+    for (int i = *n; i > k; i--) {
+        a[i] = a[i - 1];
+    }
+    a[k] = newValue;
+    (*n)++;
+}
+
+int main() {
+    int a[20] = {1, 2, 3, 4, 5};
+    int n = 5; // Current size of the array
+    int k, newValue;
+    
+    printf("Enter the position to insert: ");
+    scanf("%d", &k);
+    
+    printf("Enter the value to insert: ");
+    scanf("%d", &newValue);
+    
+    insertElement(a, &n, k, newValue);
+    
+    printf("Array after insertion: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", a[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}
