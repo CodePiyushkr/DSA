@@ -1,0 +1,30 @@
+#include <stdio.h>
+#define MAX 100
+
+int s[MAX], t = -1;
+
+void p(int v) {
+    if (t == MAX - 1) {
+        printf("Overflow\n");
+        return;
+    }
+    s[++t] = v;
+}
+
+int o() {
+    if (t == -1) {
+        printf("Underflow\n");
+        return -1;
+    }
+    return s[t--];
+}
+
+int main() {
+    p(10); p(20); p(30);
+    printf("Popped: %d\n", o());
+    printf("Popped: %d\n", o());
+    p(40);
+    printf("Popped: %d\n", o());
+    printf("Popped: %d\n", o());
+    return 0;
+}
